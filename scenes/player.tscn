@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5mccdol33cms"]
+
+[ext_resource type="Texture2D" uid="uid://bafwegtxcffp3" path="res://assets/GJ25 character.png" id="1_3vyb7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2els")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qlg0r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuyoq"]
+size = Vector2(6, 29)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
+radius = 8.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -13)
+
+[node name="Seal" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qhqgy")
+
+[node name="Spear" type="AnimatedSprite2D" parent="."]
+position = Vector2(13, -10)
+sprite_frames = SubResource("SpriteFrames_qlg0r")
+
+[node name="SpearCollision" type="CollisionShape2D" parent="."]
+position = Vector2(13, -9.5)
+shape = SubResource("RectangleShape2D_tuyoq")
+
+[node name="SealCollision" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_3vyb7")
