@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5mccdol33cms"]
+[gd_scene load_steps=9 format=3 uid="uid://b5mccdol33cms"]
 
 [ext_resource type="Texture2D" uid="uid://bafwegtxcffp3" path="res://assets/GJ25 character.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://b6mod5hh6f3s6" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -39,19 +40,32 @@ size = Vector2(6, 29)
 radius = 8.0
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(0, -13)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_g2els")
 
 [node name="Seal" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6.99996, -13)
+rotation = 1.57079
 sprite_frames = SubResource("SpriteFrames_qhqgy")
 
-[node name="Spear" type="AnimatedSprite2D" parent="."]
-position = Vector2(13, -10)
+[node name="Spear" type="AnimatedSprite2D" parent="." groups=["spear"]]
+position = Vector2(3.62396e-05, -0.999965)
+rotation = 1.57079
 sprite_frames = SubResource("SpriteFrames_qlg0r")
 
-[node name="SpearCollision" type="CollisionShape2D" parent="."]
-position = Vector2(13, -9.5)
+[node name="SpearCollisionArea" type="Area2D" parent="Spear" groups=["spear"]]
+position = Vector2(0.999965, 4.25138e-05)
+rotation = -1.57079
+collision_layer = 2
+collision_mask = 4
+
+[node name="SpearCollision" type="CollisionShape2D" parent="Spear/SpearCollisionArea" groups=["spear"]]
+position = Vector2(3.62396e-05, -0.499965)
+rotation = 1.57079
 shape = SubResource("RectangleShape2D_tuyoq")
 
 [node name="SealCollision" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
+position = Vector2(-5.99996, -13)
+rotation = 1.57079
 shape = SubResource("CircleShape2D_3vyb7")

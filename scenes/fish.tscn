@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://btqhrxtt7g0b3"]
+
+[ext_resource type="Script" uid="uid://1ygf0ia6v3jk" path="res://scripts/fish.gd" id="1_8g0i4"]
+[ext_resource type="Texture2D" uid="uid://dfsiyer6yfjth" path="res://assets/fish.png" id="2_nub35"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgks6"]
+atlas = ExtResource("2_nub35")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6lgmd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgks6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8g0i4"]
+radius = 3.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wpvan"]
+radius = 3.0
+height = 9.99999
+
+[node name="Fish" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8g0i4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6lgmd")
+
+[node name="CatchArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchArea"]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_8g0i4")
+
+[node name="FishBody" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wpvan")
+
+[connection signal="area_entered" from="CatchArea" to="." method="_on_catch_area_area_entered"]
